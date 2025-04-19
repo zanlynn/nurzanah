@@ -2,37 +2,92 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Rahasia</title>
+  <title>Untuk Kamu 💖</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom right, #ffe4ec, #fff0f5);
+      padding: 50px;
       text-align: center;
+      color: #8e44ad;
     }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #d9d9d9;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
     #content {
       display: none;
+      margin-top: 40px;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .heart {
+      font-size: 30px;
+      animation: beat 1s infinite;
+      color: #e84393;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    audio {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-  <h2>Masukkan password untuk melihat pesan spesial ❤️</h2>
+  <h2>Masukkan password untuk melihat pesan spesial 💕</h2>
   <input type="password" id="passwordInput" placeholder="Password...">
   <button onclick="checkPassword()">Buka</button>
 
   <div id="content">
-    <h1>Halo saya Saifuddin Ainun Bar pacarnya Nurzanah, Salam kenal!! 😍</h1>
+    <h1>Hai Zanah! 🥰</h1>
+    <p>Aku Saifuddin Ainun Bar, pacarmu yang selalu sayang kamu 💗</p>
+    <p>Kamu itu indah, manis, dan selalu bikin hari-hariku spesial 😚</p>
+    <div class="heart">💓</div>
+
+    <audio controls>
+      <source src="you-and-i.mp3" type="audio/mpeg">
+      Lagu tidak bisa diputar 😢
+    </audio>
   </div>
 
   <script>
     function checkPassword() {
       const input = document.getElementById("passwordInput").value;
-      const correctPassword = "nurzanah123"; // Ganti dengan password kamu
+      const correctPassword = "nurzanah123";
 
       if (input === correctPassword) {
         document.getElementById("content").style.display = "block";
       } else {
-        alert("Password salah yaa 😅");
+        alert("Yah, salah password nih 😅 coba lagi yaa~");
       }
     }
   </script>
