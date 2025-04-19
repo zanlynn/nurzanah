@@ -73,7 +73,7 @@
     <p>Kamu itu indah, manis, dan selalu bikin hari-hariku spesial 😚</p>
     <div class="heart">💓</div>
 
-    <audio controls>
+    <audio id="myAudio" controls>
       <source src="you-and-i.mp3" type="audio/mpeg">
       Lagu tidak bisa diputar 😢
     </audio>
@@ -86,6 +86,12 @@
 
       if (input === correctPassword) {
         document.getElementById("content").style.display = "block";
+
+        // Mainkan lagu setelah password benar
+        const audio = document.getElementById("myAudio");
+        audio.play().catch(error => {
+          console.log("Autoplay gagal: ", error);
+        });
       } else {
         alert("Yah, salah password nih 😅 coba lagi yaa~");
       }
