@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Rahasia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+    #content {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Masukkan password untuk melihat pesan spesial ❤️</h2>
+  <input type="password" id="passwordInput" placeholder="Password...">
+  <button onclick="checkPassword()">Buka</button>
+
+  <div id="content">
+    <h1>Halo saya Saifuddin Ainun Bar pacarnya Nurzanah, Salam kenal!! 😍</h1>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const correctPassword = "nurzanah123"; // Ganti dengan password kamu
+
+      if (input === correctPassword) {
+        document.getElementById("content").style.display = "block";
+      } else {
+        alert("Password salah yaa 😅");
+      }
+    }
+  </script>
+
+</body>
+</html>
