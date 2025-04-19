@@ -1,102 +1,137 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Untuk Kamu 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surprise for Sayang 💖</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(to bottom right, #ffe4ec, #fff0f5);
-      padding: 50px;
+      background: linear-gradient(135deg, #ffd6ec, #d0f1ff);
+      color: #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      transition: background 1s ease;
+    }
+
+    .container {
       text-align: center;
-      color: #8e44ad;
+      padding: 30px;
+      border-radius: 2rem;
+      background: white;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
+      transition: all 0.6s ease;
+      z-index: 10;
+      position: relative;
     }
 
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    input[type="password"] {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #d9d9d9;
-      font-size: 16px;
+    .hidden {
+      display: none;
     }
 
     button {
-      padding: 10px 20px;
-      margin-left: 10px;
-      background-color: #ffb6c1;
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 1rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 1rem;
+      background-color: #ffb3d1;
       color: white;
-      font-size: 16px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    #content {
-      display: none;
-      margin-top: 40px;
-      animation: fadeIn 1.5s ease forwards;
+    button:hover {
+      background-color: #ff99bd;
+    }
+
+    .fade {
+      animation: fadeIn 1s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .heart {
-      font-size: 30px;
-      animation: beat 1s infinite;
-      color: #e84393;
+    .falling {
+      position: fixed;
+      top: -50px;
+      animation: fall 5s linear infinite;
+      z-index: 1;
+      font-size: 1.5rem;
+      pointer-events: none;
     }
 
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    audio {
-      margin-top: 20px;
+    @keyframes fall {
+      0% { transform: translateY(-100px); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
     }
   </style>
 </head>
 <body>
+  <!-- Background music -->
+  <audio id="bg-music" src="you-and-i.mp3" autoplay loop></audio>
 
-  <h2>Masukkan password untuk melihat pesan spesial 💕</h2>
-  <input type="password" id="passwordInput" placeholder="Password...">
-  <button onclick="checkPassword()">Buka</button>
-
-  <div id="content">
-    <h1>Hai Zanah! 🥰</h1>
-    <p>Aku Saifuddin Ainun Bar, pacarmu yang selalu sayang kamu 💗</p>
-    <p>Kamu itu indah, manis, dan selalu bikin hari-hariku spesial 😚</p>
-    <div class="heart">💓</div>
-
-    <audio id="myAudio" controls>
-      <source src="you-and-i.mp3" type="audio/mpeg">
-      Lagu tidak bisa diputar 😢
-    </audio>
+  <div class="container fade" id="step">
+    <p id="text">Sayang... klik ini dulu deh, aku mau nanya sesuatu 🫣</p>
+    <button onclick="nextStep()">Lanjut 💌</button>
   </div>
 
   <script>
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value;
-      const correctPassword = "nurzanah123";
+    const texts = [
+      "Sayang... klik ini dulu deh, aku mau nanya sesuatu 🫣",
+      "Udah makan belum? Udah mandi? Udah mikirin aku hari ini? 😏",
+      "Hmm... kayaknya kamu terlalu ganteng/cantik buat baca kelanjutannya... 🙈",
+      "Maaf halaman ini rusak karena kelebihan cinta... 😳 Klik kalau kamu masih pengen lanjut.",
+      "WARNING! Kamu akan terkena rayuan maut dalam 3... 2... 1...",
+      "Sayang, kamu itu hadiah terindah yang pernah aku dapet. Makasih udah hadir di hidup aku. I love youu 💖"
+    ];
 
-      if (input === correctPassword) {
-        document.getElementById("content").style.display = "block";
+    let currentStep = 0;
 
-        // Mainkan lagu setelah password benar
-        const audio = document.getElementById("myAudio");
-        audio.play().catch(error => {
-          console.log("Autoplay gagal: ", error);
-        });
+    function nextStep() {
+      currentStep++;
+      const container = document.getElementById("step");
+      const textElement = document.getElementById("text");
+      if (currentStep < texts.length) {
+        textElement.innerText = texts[currentStep];
+        container.classList.remove("fade");
+        void container.offsetWidth;
+        container.classList.add("fade");
       } else {
-        alert("Yah, salah password nih 😅 coba lagi yaa~");
+        document.body.innerHTML = `
+          <audio src="you-and-i.mp3" autoplay loop></audio>
+          <div class='container fade'>
+            <h2>🥹 The End?</h2>
+            <p>${texts[texts.length - 1]}</p>
+            <p style='font-size: 2rem;'>💘</p>
+          </div>
+        `;
       }
     }
-  </script>
 
+    function spawnEffects() {
+      const emojis = ['❤️', '🎈', '💖', '🎉', '💕', '💘'];
+      setInterval(() => {
+        const el = document.createElement('div');
+        el.classList.add('falling');
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 6000);
+      }, 300);
+    }
+
+    // Start falling effects from the beginning
+    spawnEffects();
+  </script>
 </body>
 </html>
