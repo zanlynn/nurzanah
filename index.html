@@ -81,7 +81,7 @@
     .slideshow-container {
       display: flex;
       gap: 20px;
-      animation: scrollLeft 40s linear infinite;
+      animation: scrollLeft 30s linear infinite;
     }
 
     .slideshow-container img {
@@ -93,7 +93,7 @@
 
     @keyframes scrollLeft {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+      100% { transform: translateX(-50%); }
     }
   </style>
 </head>
@@ -113,7 +113,7 @@
   </div>
 
   <script>
-    const PASSWORD = "sssttttt";
+    const PASSWORD = "nurainun";
 
     function checkPassword() {
       const input = document.getElementById("passwordInput").value;
@@ -152,9 +152,15 @@
           <audio id="bg-music" src="you-and-i.mp3" autoplay loop></audio>
           <div class="container fade">
             <h2 style="margin-bottom: 10px;">Kenangan Kita 📸</h2>
-            <p style="margin-bottom: 20px;">Foto-foto manis kita nih, geser otomatis yaa~ 💖</p>
+            <p style="margin-bottom: 20px;">Foto-foto manis kita nih, muter terus tanpa henti 💖</p>
             <div class="slideshow-wrapper">
               <div class="slideshow-container">
+                <img src="foto1.jpg" alt="Foto 1">
+                <img src="foto2.jpg" alt="Foto 2">
+                <img src="foto3.jpg" alt="Foto 3">
+                <img src="foto4.jpg" alt="Foto 4">
+                <img src="foto5.jpg" alt="Foto 5">
+                <!-- Copy ulang untuk loop -->
                 <img src="foto1.jpg" alt="Foto 1">
                 <img src="foto2.jpg" alt="Foto 2">
                 <img src="foto3.jpg" alt="Foto 3">
