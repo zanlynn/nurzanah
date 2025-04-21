@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Surprise for Sayang 💖</title>
-  <!-- Mengimpor font Poppins dari Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For My Sweety Heart 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif; /* Mengganti font menjadi Poppins */
-      background: linear-gradient(135deg, #ffd6ec, #d0f1ff);
+      font-family: 'Poppins', sans-serif;
+      background: url('chibi-background.png') center/cover no-repeat, linear-gradient(135deg, #ffd6ec, #d0f1ff);
       color: #444;
       display: flex;
       align-items: center;
@@ -25,17 +24,14 @@
       text-align: center;
       padding: 30px;
       border-radius: 2rem;
-      background: white;
+      background: rgba(255, 255, 255, 0.85);
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
       max-width: 90%;
-      transition: all 0.6s ease;
       z-index: 10;
       position: relative;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     button {
       margin-top: 20px;
@@ -81,19 +77,38 @@
   <!-- Background music -->
   <audio id="bg-music" src="you-and-i.mp3" autoplay loop></audio>
 
-  <div class="container fade" id="step">
-    <p id="text">Sayang... klik ini dulu deh, aku mau nanya sesuatu 🫣</p>
+  <div class="container fade" id="auth">
+    <p>Masukkan password dulu yaa 🥺</p>
+    <input type="password" id="passwordInput" placeholder="Password..." style="padding:10px; border-radius:1rem; border:1px solid #ccc;"/>
+    <br/>
+    <button onclick="checkPassword()">Masuk</button>
+  </div>
+
+  <div class="container fade hidden" id="step">
+    <p id="text">Sayang... aku punya sesuatu buat kamu 🥰</p>
     <button onclick="nextStep()">Lanjut 💌</button>
   </div>
 
   <script>
+    const PASSWORD = "nurainun"; // kamu bisa ganti ini
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (input === PASSWORD) {
+        document.getElementById("auth").classList.add("hidden");
+        document.getElementById("step").classList.remove("hidden");
+      } else {
+        alert("Password-nya salah 😢");
+      }
+    }
+
     const texts = [
-      "Sayang... klik ini dulu deh, aku mau nanya sesuatu 🫣",
-      "Udah makan belum? Udah mandi? Udah mikirin aku hari ini? 😏",
-      "Hmm... kayaknya kamu terlalu cantik buat baca kelanjutannya... 🙈",
-      "Maaf halaman ini rusak karena kelebihan cinta... 😳 Klik kalau kamu masih pengen lanjut.",
-      "WARNING! Kamu akan terkena rayuan maut dalam 3... 2... 1...",
-      "Sayang, kamu itu hadiah terindah yang pernah aku dapet. Makasih udah hadir di hidup aku. I love youu 💖"
+      "Sayang... aku punya sesuatu buat kamu 🥰",
+      "Maaf kalau baru ini yang bisa aku kasih",
+      "Aku cuma mau bilang... kamu adalah alasanku tersenyum tiap hari 😊",
+      "Aku suka banget caramu ketawa, caramu cerita, bahkan caramu ngambek 😆",
+      "Kalau suatu hari kamu ragu, ingat ya... hatiku milikmu sepenuhnya 💞",
+      "Aku cinta kamu. Selalu. 💖"
     ];
 
     let currentStep = 0;
@@ -108,14 +123,7 @@
         void container.offsetWidth;
         container.classList.add("fade");
       } else {
-        document.body.innerHTML = `
-          <audio src="you-and-i.mp3" autoplay loop></audio>
-          <div class='container fade'>
-            <h2>🥹 The End?</h2>
-            <p>${texts[texts.length - 1]}</p>
-            <p style='font-size: 2rem;'>💘</p>
-          </div>
-        `;
+        textElement.innerHTML = "<h2>🥹 The End?</h2><p>" + texts[texts.length - 1] + "</p><p style='font-size: 2rem;'>💘</p>";
       }
     }
 
@@ -132,7 +140,6 @@
       }, 300);
     }
 
-    // Start falling effects from the beginning
     spawnEffects();
   </script>
 </body>
